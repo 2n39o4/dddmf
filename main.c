@@ -19,6 +19,8 @@ extern void print(char*);
 extern void run_tasks(void);
 extern void PRINTF(char*,...);
 extern void dddmf_main(void);
+extern void uC_print(char*);
+extern void uC_set_console(int);
 //
 //
 void update_tasks(void){}

@@ -9,6 +9,9 @@
 //
 //
 //
+extern void uC_printf(char*,...);
+//
+//
 //
 static int _syslog = 0;
 //

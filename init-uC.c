@@ -7,7 +7,7 @@
 // notes: use set_console(x) to declare/define a console uart. Once set_console has been called
 //        use uC_kbhit, uC_getc, uC_emit, uC_print, uC_key
 //
-#include "liblm3s6965.h"
+//#include "liblm3s6965.h"
 //#include "syslog.h"
 //
 //

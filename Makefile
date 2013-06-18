@@ -1,8 +1,11 @@
 #
-# declare the path to the cross-compiler
+# +) declare the path to the cross-compiler
 #
-PATH=/home/neon/etc/Sourcery-G++/2010q1-188/bin
+#PATH=/home/neon/etc/Sourcery-G++/2010q1-188/bin
+PATH=/home/neon/etc/CROSS/2010q1-188/bin
 
+# +) define tools
+#
 AS=$(PATH)/arm-none-eabi-as
 AR=$(PATH)/arm-none-eabi-ar
 CC=$(PATH)/arm-none-eabi-gcc
@@ -10,22 +13,14 @@ OD=$(PATH)/arm-none-eabi-objdump
 OC=$(PATH)/arm-none-eabi-objcopy
 LD=$(PATH)/arm-none-eabi-ld
 
-#DDD_COOP_TASKS = /home/neon/etc/DDD-COOP-TASKS/
-# by commenting out DDD_COOP_TASKS this make file 
-# looks for `coop-tasks.o' in the project tree
 
-# !!! I prefer to have ALL the source files in the
-#     project tree !!!
-
-#
-# list of objects needed to build target
+# +) list of objects needed to build target
 #
 OBJS  = main.o
 OBJS += isr.o
 OBJS += syslog.o
 OBJS += init-uC.o
 OBJS += dddmf.o
-#OBJS += liblm3s6965.o
 OBJS += lm3s6965-uart.o
 OBJS += lm3s6965-clock.o
 OBJS += lm3s6965-systick.o
@@ -34,14 +29,15 @@ OBJS += startup.o
 OBJS += syscalls.o
 
 #
-# declare target (voodoo.axf)
+# +) declare target (voodoo.axf)
 #
 TARGET = voodoo
 
 #
-# where do I keep StellarisWare ???
+# +) where do I keep StellarisWare ???
 #
-STELLARISWARE=/home/neon/etc/TI/Luminary/StellarisWare/9453
+#STELLARISWARE=/home/neon/etc/TI/Luminary/StellarisWare/9453
+STELLARISWARE=/home/neon/etc/StellarisWare/9453
 
 
 #
@@ -63,6 +59,8 @@ LIB_LM3S6965 = $(STELLARISWARE)/driverlib/gcc-cm3/libdriver-cm3.a
 #LINKER_SCRIPT = linker-script.ld
 LINKER_SCRIPT = hello.ld
 
+# +) declare compiler flags
+#
 CFLAGS += -mcpu=cortex-m3 -mthumb -g -O0
 CFLAGS += -ffunction-sections
 CFLAGS += -fdata-sections
@@ -72,9 +70,9 @@ CFLAGS += -Wall
 CFLAGS += -pedantic
 CFLAGS += -DPART_LM3S6965
 
-#CFLAGS +=
 
-
+# +) declare linker flags
+#
 LDFLAGS  = -T $(LINKER_SCRIPT)
 LDFLAGS += --entry ResetISR 
 LDFLAGS += --gc-sections
@@ -162,3 +160,14 @@ help:
 	@echo "CFLAGS = $(CFLAGS)"
 	@echo "LINKER_SCRIPT = $(LINKER_SCRIPT)"
 
+
+# NOTES:
+
+#DDD_COOP_TASKS = /home/neon/etc/DDD-COOP-TASKS/
+# by commenting out DDD_COOP_TASKS this make file 
+# looks for `coop-tasks.o' in the project tree
+
+# !!! I prefer to have ALL the source files in the
+#     project tree !!!
+
+#OBJS += liblm3s6965.o
